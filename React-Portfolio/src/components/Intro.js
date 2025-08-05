@@ -62,6 +62,13 @@ justify-content: space-evenly;
 }
 
 `
+const SubText = styled.p`
+  font-size: calc(0.7em + 0.7vw);
+  color: ${props => `rgba(${props.theme.bodyRgba},0.8)`};
+  font-weight: 400;
+  margin-top: 1.5rem;
+  line-height: 1.6;
+`;
 
 const Intro = () => {
   return (
@@ -73,8 +80,13 @@ const Intro = () => {
         <SubBox>
             <Text>
                 <h1>Hi,</h1>
-                <h3>I'm Prajwal Wable.</h3>
-                <h6>I'm a Developer and a Blogger.</h6>
+                <h3>I'm Prajwal Wable</h3>
+                <h6>I’m a builder and engineer interested in designing intelligent, scalable systems  from cloud-native platforms to decentralized applications and full-stack web services.
+                    <br/>
+                    <br/>
+                    I’m currently pursuing my Master’s in Computer Science at UIUC, where I’m exploring the intersection of systems design, machine learning, and blockchain technologies.
+                </h6>
+                
             </Text>
         </SubBox>
         <SubBox>

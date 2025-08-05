@@ -4,7 +4,6 @@ import { useState } from 'react'
 import styled from 'styled-components'
 import { keyframes } from 'styled-components'
 import LogoComponent from '../subComponents/LogoComponent'
-import PowerButton from '../subComponents/PowerButton'
 import SocialIcons from '../subComponents/SocialIcons'
 import { YinYang } from './AllSvgs'
 import Intro from './Intro'
@@ -34,6 +33,21 @@ top: 2rem;
 right: calc(1rem + 2vw);
 text-decoration: none;
 z-index: 1;
+transition: all 0.3s ease;
+
+&:hover {
+  text-shadow: 0 0 10px ${props => props.theme.text},
+               0 0 20px ${props => props.theme.text},
+               0 0 30px ${props => props.theme.text};
+  transform: scale(1.1);
+}
+
+&:active {
+  text-shadow: 0 0 15px ${props => props.theme.text},
+               0 0 25px ${props => props.theme.text},
+               0 0 35px ${props => props.theme.text};
+  transform: scale(0.95);
+}
 `
 const BLOG = styled(NavLink)`
 color: ${props => props.theme.text};
@@ -43,6 +57,21 @@ right: calc(1rem + 2vw);
 transform: rotate(90deg) translate(-50%, -50%);
 text-decoration: none;
 z-index: 1;
+transition: all 0.3s ease;
+
+&:hover {
+  text-shadow: 0 0 10px ${props => props.theme.text},
+               0 0 20px ${props => props.theme.text},
+               0 0 30px ${props => props.theme.text};
+  transform: rotate(90deg) translate(-50%, -50%) scale(1.1);
+}
+
+&:active {
+  text-shadow: 0 0 15px ${props => props.theme.text},
+               0 0 25px ${props => props.theme.text},
+               0 0 35px ${props => props.theme.text};
+  transform: rotate(90deg) translate(-50%, -50%) scale(0.95);
+}
 `
 const WORK = styled(NavLink)`
 color: ${props => props.click ? props.theme.body : props.theme.text};
@@ -52,6 +81,21 @@ left: calc(1rem + 2vw);
 transform: translate(-50%, -50%) rotate(-90deg);
 text-decoration: none;
 z-index: 1;
+transition: all 0.3s ease;
+
+&:hover {
+  text-shadow: 0 0 10px ${props => props.click ? props.theme.body : props.theme.text},
+               0 0 20px ${props => props.click ? props.theme.body : props.theme.text},
+               0 0 30px ${props => props.click ? props.theme.body : props.theme.text};
+  transform: translate(-50%, -50%) rotate(-90deg) scale(1.1);
+}
+
+&:active {
+  text-shadow: 0 0 15px ${props => props.click ? props.theme.body : props.theme.text},
+               0 0 25px ${props => props.click ? props.theme.body : props.theme.text},
+               0 0 35px ${props => props.click ? props.theme.body : props.theme.text};
+  transform: translate(-50%, -50%) rotate(-90deg) scale(0.95);
+}
 `
 const BottomBar = styled.div`
 position: absolute;
@@ -63,15 +107,45 @@ width: 100%;
 display: flex;
 justify-content: space-evenly;
 `
-const ABOUT = styled(NavLink)`
+const EDUCATION = styled(NavLink)`
 color: ${props => props.click ? props.theme.body : props.theme.text};
 text-decoration: none;
 z-index: 1;
+transition: all 0.3s ease;
+
+&:hover {
+  text-shadow: 0 0 10px ${props => props.click ? props.theme.body : props.theme.text},
+               0 0 20px ${props => props.click ? props.theme.body : props.theme.text},
+               0 0 30px ${props => props.click ? props.theme.body : props.theme.text};
+  transform: scale(1.1);
+}
+
+&:active {
+  text-shadow: 0 0 15px ${props => props.click ? props.theme.body : props.theme.text},
+               0 0 25px ${props => props.click ? props.theme.body : props.theme.text},
+               0 0 35px ${props => props.click ? props.theme.body : props.theme.text};
+  transform: scale(0.95);
+}
 `
 const SKILLS = styled(NavLink)`
 color: ${props => props.theme.text};
 text-decoration: none;
 z-index: 1;
+transition: all 0.3s ease;
+
+&:hover {
+  text-shadow: 0 0 10px ${props => props.theme.text},
+               0 0 20px ${props => props.theme.text},
+               0 0 30px ${props => props.theme.text};
+  transform: scale(1.1);
+}
+
+&:active {
+  text-shadow: 0 0 15px ${props => props.theme.text},
+               0 0 25px ${props => props.theme.text},
+               0 0 35px ${props => props.theme.text};
+  transform: scale(0.95);
+}
 `
 const rotate = keyframes`
 form{
@@ -100,11 +174,31 @@ transition: all 1s ease;
 
 &>:first-child{
   animation: ${rotate} infinite 1.5s linear;
+  transition: all 0.3s ease;
 }
 
 &>:last-child{
   display: ${props => props.click ? 'none' : 'inline-block'};
   padding-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+&:hover {
+  &>:first-child {
+    transform: scale(1.1);
+  }
+  &>:last-child {
+    transform: scale(1.1);
+  }
+}
+
+&:active {
+  &>:first-child {
+    transform: scale(0.95);
+  }
+  &>:last-child {
+    transform: scale(0.95);
+  }
 }
 `
 const DarkDiv = styled.div`
@@ -129,7 +223,6 @@ const Main = () => {
     <MainContainer>
         <DarkDiv click={click}/>
         <Container>
-        <PowerButton />
         <LogoComponent theme={click ? 'dark' : 'light'}/>
         <SocialIcons theme={click ? 'dark' : 'light'}/>
         <Center click = {click}>
@@ -169,7 +262,7 @@ const Main = () => {
             Blog
           </motion.h2>
         </BLOG>
-        <WORK to="/work" click = {click}>
+        <WORK to="/projects" click = {click}>
           <motion.h2
           initial={{
             y:-200,
@@ -182,11 +275,11 @@ const Main = () => {
           whileHover={{scale: 1.1}}
           whileTap={{scale: 0.9}}
           >
-            Work
+            Projects
           </motion.h2>
         </WORK>
         <BottomBar>
-        <ABOUT to="/about" click = {click}>
+        <EDUCATION to="/education" click = {click}>
           <motion.h2
           initial={{
             y:200,
@@ -199,9 +292,9 @@ const Main = () => {
           whileHover={{scale: 1.1}}
           whileTap={{scale: 0.9}}
           >
-            About.
+            Education
           </motion.h2>
-        </ABOUT>
+        </EDUCATION>
         <SKILLS to="/skills">
           <motion.h2
           initial={{
